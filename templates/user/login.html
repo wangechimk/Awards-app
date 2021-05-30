@@ -23,27 +23,24 @@
     
 </head>
 
-<div class="main">
-  <div class="container">
-      <div class="row">
-          <div class="col-md-6">
-              <div class="login-card">
-                  <h2 class="text-center mb-4">Log In</h2>
-                  <form action="">
-                      <p>
-                          <label for="email">Email</label>
-                          <input type="text" class="form-input" name="email" placeholder="Enter your email address">
-                      </p>
-                      <p>
-                          <label for="password">Password</label>
-                          <input type="password" class="form-input" name="password" placeholder="Enter your password">
-                      </p>
-                      <input type="submit" class="btn btn-primary" value="Login">
-                  </form>
-                  <p>Not a member?<a href="{% url 'user:signup'%}">Sign up</a></p>
-              </div>
+<div id="login-box">
+    <div class="left">
+      <h1>Log in</h1>
+      
+      <input type="text" name="username" placeholder="Username" />
+      <input type="text" name="email" placeholder="E-mail" />
+      <input type="password" name="password" placeholder="Password" />
+      
+      <input type="submit" name="signup_submit" value="Log in" />
+    </div>
+
+        <div class="right">
+            <span class="loginwith">Sign in </span>
+            
+            
+            <p>If you already have an account <a href="{% url 'user:signup'%}">SIGN UP</a></p>
+      
           </div>
-        
+    <div class="or">OR</div>
   </div>
-</div>
 {% endblock %}
