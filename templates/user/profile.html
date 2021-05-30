@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% load static %}
+
+<!--  -->
+{% block styles %} {{block.super}}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}"> {% endblock %}
+<!--  -->
+{% block content %}
+<div class="container">
+    <div class="top">
+        <img class="avatar" src="{{user.profile.photo.url}}" alt="">
+        <div class="text">
+            <h3>{{user.username|upper}}</h3>
+            <p> {{user.profile.bio}}</p>
+        </div>
+    </div>
+
+    <div class="row">
+
+    </div>
+</div>
+{% endblock %}
