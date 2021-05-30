@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from .models import Post,Profile
 from django.shortcuts import render,redirect
-from .forms import SignupForm
+from .forms import SignupForm,uploadForm
 from django.contrib.auth import login, authenticate
 
 # Create your views here.
@@ -27,3 +27,17 @@ def profile(request):
     current_user = request.user.profile
     pics = Post.objects.filter(profile=current_user).all()
     return render(request, 'user/profile.html', {'pics':pics})
+
+@login_required(login_url='/user/login/')
+def upload(request):
+    current_user = request.user.profile
+    if request.method == 'POST':
+        form = uploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            image = form.save(commit=False)
+            image.profile = current_user
+            image.save()
+        return redirect('feed')
+    else:
+        form = uploadForm()
+    return render(request, 'user/upload.html', {'form':form})
