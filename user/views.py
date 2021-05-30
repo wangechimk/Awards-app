@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required
+from .models import Post,Profile
 from django.shortcuts import render,redirect
 from .forms import SignupForm
 from django.contrib.auth import login, authenticate
@@ -19,3 +21,9 @@ def signup(request):
 
 def login(request):
     return render(request, 'user/login.html')
+
+@login_required(login_url='/user/login/')
+def profile(request):
+    current_user = request.user.profile
+    pics = Post.objects.filter(profile=current_user).all()
+    return render(request, 'user/profile.html', {'pics':pics})
