@@ -14,7 +14,7 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('landing')
+            return redirect('awards/landing')
     else:
         form = SignupForm()
     return render(request, 'user/signup.html', {'form': form })
@@ -37,7 +37,16 @@ def upload(request):
             image = form.save(commit=False)
             image.profile = current_user
             image.save()
-        return redirect('feed')
+        return redirect('awards/landing')
     else:
         form = uploadForm()
     return render(request, 'user/upload.html', {'form':form})
+
+
+def search(request):
+    if 'project' in request.GET and request.GET['project']:
+        search_term = request.GET.get('project')
+        res = Post.search_project(search_term)
+        return render(request, 'user/search.html', {'res':res})
+    else:
+        return render(request, 'user/search.html')    
