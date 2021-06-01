@@ -4,6 +4,7 @@ from django.shortcuts import render,redirect
 from .forms import SignupForm,uploadForm,rateProject
 from django.contrib.auth import login, authenticate
 from django.http import HttpResponseRedirect
+from django.contrib.auth import login as auth_login
 import random
 
 # Create your views here.
@@ -11,12 +12,10 @@ def signup(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
         if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            return redirect('awards/landing')
+            user = form.save()
+            auth_login(request, user)
+         
+            return redirect('awards:landing')
     else:
         form = SignupForm()
     return render(request, 'user/signup.html', {'form': form })
@@ -26,8 +25,9 @@ def login(request):
 
 @login_required(login_url='/user/login/')
 def profile(request):
+    print(request.user.profile.photos.url)
     current_user = request.user.profile
-    pics = Post.objects.filter(profile=current_user).all()
+    pics = Post.objects.filter(profile=current_user)
     return render(request, 'user/profile.html', {'pics':pics})
 
 @login_required(login_url='/user/login/')
@@ -39,7 +39,7 @@ def upload(request):
             image = form.save(commit=False)
             image.profile = current_user
             image.save()
-        return redirect('awards/landing')
+        return redirect('awards:landing')
     else:
         form = uploadForm()
     return render(request, 'user/upload.html', {'form':form})
@@ -91,10 +91,10 @@ def project(request, post):
             return HttpResponseRedirect(request.path_info)
     else:
         form = rateProject()
-    params = {
-        'post': post,
-        'rating_form': form,
-        'rating_status': rating_status
+        params = {
+            'post': post,
+            'rating_form': form,
+            'rating_status': rating_status
 
-    }
-    return render(request, 'rate.html', {'post':project, 'form':form})
+        }
+        return render(request, 'rate.html', {'post':project, 'form':form})
