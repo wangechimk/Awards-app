@@ -25,5 +25,5 @@ urlpatterns = [
     path('awards/',include('awards.urls',namespace='awards')),
     
 ]
-if settings.DEBUG:
-    urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_URL) 
+# if settings.DEBUG:
+urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_URL) 
