@@ -49,7 +49,7 @@ def search(request):
     if 'project' in request.GET and request.GET['project']:
         search_term = request.GET.get('project')
         res = Post.search_project(search_term)
-        return render(request, 'user/search.html', {'res':res})
+        return render(request, 'user/results.html', {'res':res})
     else:
         return render(request, 'user/search.html')    
 

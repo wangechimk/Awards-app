@@ -42,7 +42,7 @@ class Post(models.Model):
     @classmethod
     def search_project(cls, search_term):
         ''' method to search projects by title '''
-        return cls.objects.filter(title__icontains=search_term).all()    
+        return cls.objects.filter(title__icontains=search_term)    
 
 
 class Rating(models.Model):

@@ -1,157 +1,177 @@
 {% load bootstrap5 %} {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <title> Awards </title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'css/landing.css' %}">
 
-    
+
 </head>
+
 <body class="is-preload">
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
-          <a class="navbar-brand" href="#">Awards</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-      
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="{%url 'awards:landing' %}">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{%url 'user:profile' %}">Profile</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{%url 'user:search' %}">Search</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{%url 'user:upload' %}">Post your site</a>
-              </li>
-            </ul>
-          </div>
+            <a class="navbar-brand" href="#">Awards</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{%url 'awards:landing' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{%url 'user:profile' %}">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{%url 'user:search' %}">Search</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{%url 'user:upload' %}">Post your site</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </nav>
-    
+    </nav>
 
 
-            <!-- Main -->
-                <div id="main">
 
+    <!-- Main -->
+    <div id="main">
+        {% if user.is_authenticated %}
+        <div class="modal fade bd-example-modal-xl" id="ModalCenter -{{ post.id }}" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        </div>
+    {% endif %}
                     <!-- Featured Post -->
-                        <article class="post featured">
-                            <header class="major">
-                                <h2><a href="#">This are the top rated<br />
-                                websites this month</a></h2>
-                                <p>Lewa house</p>
-                                <span class="date">May 22, 2021</span>
-                            </header>
-                            <a href="{%url 'user:rate' %}" class="image main"><img src="{%static 'img/post1.png' %}" alt="" /></a>
-                            <ul class="actions special">
-                                <li><a href="https://lewahouse.com/" class="button large">view site</a></li>
-                            </ul>
-                        </article> 
+                    <article class="post featured">
+                        <header class="major">
+                            <h2><a href="#">This are the top rated<br />
+                                    websites this month</a></h2>
+                            <p>Lewa house</p>
+                            <span class="date">May 22, 2021</span>
+                        </header>
+                        <a href="{%url 'user:rate' %}" class="image main"><img src="{%static 'img/post1.png' %}"
+                                alt="" /></a>
+                        <ul class="actions special">
+                            <li><a href="https://lewahouse.com/" class="button large">view site</a></li>
+                        </ul>
+                    </article>
 
                     <!-- Posts -->
-                        <section class="posts">
-                            {% for post in posts %}
-                            <article>
-                                <header>
-                                    <span class="date"> May 14, 2021</span>
-                                    <h2><a href=''></a>Medusa AE<br />
-                                    </a></h2>
-                                </header>
-                                <a href="{%url 'user:rate' %}" class="image fit"><img src="{%static 'img/post2.png' %}" alt="" /></a>
-                                <p></p>
-                                <ul class="actions special">
-                                    <li><a href="https://artsexperiments.withgoogle.com/medusae/" class="button">View site</a></li>
-                                </ul>
-                            </article>
-                            <article>
-                                <header>
-                                    <span class="date">May 02, 2021</span>
-                                    <h2><a href="#">Ana interiors<br />
-                                    </a></h2>
-                                </header>
-                                <a href="{%url 'user:rate' %}" class="image fit"><img src="{%static 'img/post3.png' %}" alt="" /></a>
-                                <p></p>
-                                <ul class="actions special">
-                                    <li><a href="https://aainterior.com.ua/" class="button">View site</a></li>
-                                </ul>
-                            </article>
-                            <article>
-                                <header>
-                                    <span class="date">May 10 2021</span>
-                                    <h2><a href="#">Interior Lab<br />
-                                    </a></h2>
-                                </header>
-                                <a href="{%url 'user:rate' %}" class="image fit"><img src="{%static 'img/post4.png' %}" alt="" /></a>
-                                <p></p>
-                                <ul class="actions special">
-                                    <li><a href="https://interiorlab.creative-nights.com/interiors/" class="button">View site</a></li>
-                                </ul>
-                            </article>
-                            <article>
-                                <header>
-                                    <span class="date">May 1, 2021</span>
-                                    <h2><a href="#">CPM lab<br />
-                                    </a></h2>
-                                </header>
-                                <a href="{%url 'user:rate' %}" class="image fit"><img src="{%static 'img/post5.png' %}" alt="" /></a>
-                                <p></p>
-                                <ul class="actions special">
-                                    <li><a href="https://cpm-interiordesign.be/" class="button">View site</a></li>
-                                </ul>
-                            </article>
-                            <article>
-                                <header>
-                                    <span class="date">May 03, 2021</span>
-                                    <h2><a href="#">Endless<br />
-                                    </a></h2>
-                                </header>
-                                <a href="{%url 'user:rate' %}" class="image fit"><img src="{%static 'img/post6.png' %}" alt="" /></a>
-                                <p></p>
-                                <ul class="actions special">
-                                    <li><a href="https://hanaiworld.com/" class="button">View site</a></li>
-                                </ul>
-                            </article>
-                            <article>
-                                <header>
-                                    <span class="date">May 15, 2021</span>
-                                    <h2><a href="#">Endless<br />
-                                    </a></h2>
-                                </header>
-                                <a href="{%url 'user:rate' %}" class="image fit"><img src="{%static 'img/post7.png' %}" alt="" /></a>
-                                <p></p>
-                                <ul class="actions special">
-                                    <li><a href="https://theendless.co/" class="button">View site</a></li>
-                                </ul>
-                            </article>
-                        </section>
-                </div>
-        
+                    <section class="posts">
 
-            <!-- Copyright -->
+                        <article>
+                            <header>
+                                <span class="date"> May 14, 2021</span>
+                                <h2><a href=''></a>Medusa AE<br />
+                                    </a></h2>
+                            </header>
+                            <a href="{%url 'user:rate' %}" class="image fit"><img src="{%static 'img/post2.png' %}"
+                                    alt="" /></a>
+                            <p></p>
+                            <ul class="actions special">
+                                <li><a href="https://artsexperiments.withgoogle.com/medusae/" class="button">View
+                                        site</a></li>
+                            </ul>
+                        </article>
+                        <article>
+                            <header>
+                                <span class="date">May 02, 2021</span>
+                                <h2><a href="#">Ana interiors<br />
+                                    </a></h2>
+                            </header>
+                            <a href="{%url 'user:rate' %}" class="image fit"><img src="{%static 'img/post3.png' %}"
+                                    alt="" /></a>
+                            <p></p>
+                            <ul class="actions special">
+                                <li><a href="https://aainterior.com.ua/" class="button">View site</a></li>
+                            </ul>
+                        </article>
+                        <article>
+                            <header>
+                                <span class="date">May 10 2021</span>
+                                <h2><a href="#">Interior Lab<br />
+                                    </a></h2>
+                            </header>
+                            <a href="{%url 'user:rate' %}" class="image fit"><img src="{%static 'img/post4.png' %}"
+                                    alt="" /></a>
+                            <p></p>
+                            <ul class="actions special">
+                                <li><a href="https://interiorlab.creative-nights.com/interiors/" class="button">View
+                                        site</a></li>
+                            </ul>
+                        </article>
+                        <article>
+                            <header>
+                                <span class="date">May 1, 2021</span>
+                                <h2><a href="#">CPM lab<br />
+                                    </a></h2>
+                            </header>
+                            <a href="{%url 'user:rate' %}" class="image fit"><img src="{%static 'img/post5.png' %}"
+                                    alt="" /></a>
+                            <p></p>
+                            <ul class="actions special">
+                                <li><a href="https://cpm-interiordesign.be/" class="button">View site</a></li>
+                            </ul>
+                        </article>
+                        <article>
+                            <header>
+                                <span class="date">May 03, 2021</span>
+                                <h2><a href="#">Endless<br />
+                                    </a></h2>
+                            </header>
+                            <a href="{%url 'user:rate' %}" class="image fit"><img src="{%static 'img/post6.png' %}"
+                                    alt="" /></a>
+                            <p></p>
+                            <ul class="actions special">
+                                <li><a href="https://hanaiworld.com/" class="button">View site</a></li>
+                            </ul>
+                        </article>
+                        <article>
+                            <header>
+                                <span class="date">May 15, 2021</span>
+                                <h2><a href="#">Endless<br />
+                                    </a></h2>
+                            </header>
+                            <a href="{%url 'user:rate' %}" class="image fit"><img src="{%static 'img/post7.png' %}"
+                                    alt="" /></a>
+                            <p></p>
+                            <ul class="actions special">
+                                <li><a href="https://theendless.co/" class="button">View site</a></li>
+                            </ul>
+                        </article>
+                    </section>
+                </div>
+
+
+                <!-- Copyright -->
                 <div id="copyright">
-                    <ul><li>&copy; Wangechimk</li><li>Awards: <a href="https://www.awwwards.com/"></a>site</li></ul>
+                    <ul>
+                        <li>&copy; Wangechimk</li>
+                        <li>Awards: <a href="https://www.awwwards.com/"></a>site</li>
+                    </ul>
                 </div>
 
-        </div>
+            </div>
 
-    <!-- Scripts -->
-    <script src='{% static "js/jquery.scrollex.min.js" %}'></script>
-    <script src='{% static "js/jquery.scrolly.min.js" %}'></script>
-    <script src='{% static "js/browser.min.js" %}'></script>
-    <script src='{% static "js/breakpoints.min.js" %}'></script>
-    <script src='{% static "js/util.js" %}'></script>
-    <script src='{% static "js/script.js" %}'></script>
-    <script src='{% static "js/jquery.waypoints.min.js" %}'></script>
-    <script src='{% static "js/infinite.min.js" %}'></script>
-    
+            <!-- Scripts -->
+            <script src='{% static "js/jquery.scrollex.min.js" %}'></script>
+            <script src='{% static "js/jquery.scrolly.min.js" %}'></script>
+            <script src='{% static "js/browser.min.js" %}'></script>
+            <script src='{% static "js/breakpoints.min.js" %}'></script>
+            <script src='{% static "js/util.js" %}'></script>
+            <script src='{% static "js/script.js" %}'></script>
+            <script src='{% static "js/jquery.waypoints.min.js" %}'></script>
+            <script src='{% static "js/infinite.min.js" %}'></script>
+
 </body>
+
 </html>
